@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import User from "./User.svelte";
+    import UserSearch from "./UserSearch.svelte";
 
     let users;
 
@@ -32,6 +33,7 @@
 </style>
 
 <main>
+    <UserSearch/>
     {#if users}
         <ul class="user-list">
             {#each users as user}
