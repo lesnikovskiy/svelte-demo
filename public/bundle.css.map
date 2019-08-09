@@ -1,8 +1,14 @@
 {
   "version": 3,
   "file": "bundle.css",
-  "sources": [],
-  "sourcesContent": [],
+  "sources": [
+    "..\\app\\App.svelte",
+    "..\\app\\User.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\r\n    import { onMount } from \"svelte\";\r\n    import User from \"./User.svelte\";\r\n\r\n    let users;\r\n\r\n    function getGithubUsers() {\r\n        fetch('https://api.github.com/users')\r\n            .then(resp => resp.json())\r\n            .then(data => (users = data));\r\n    }\r\n\r\n    onMount(() => {\r\n        getGithubUsers();\r\n    });\r\n\r\n</script>\r\n\r\n<style>\r\n    .user-list {\r\n        display: flex;\r\n        flex-flow: wrap;\r\n        list-style: none;\r\n        margin: 0;\r\n        padding: 0;\r\n    }\r\n\r\n    .user-list li {\r\n        width: 20%;\r\n        padding: 10px;\r\n    }\r\n</style>\r\n\r\n<main>\r\n    {#if users}\r\n        <ul class=\"user-list\">\r\n            {#each users as user}\r\n                <User username={user.login} avatar={user.avatar_url} />\r\n            {/each}\r\n        </ul>\r\n    {/if}\r\n</main>",
+    "<script>\r\n    export let username;\r\n    export let avatar;\r\n</script>\r\n\r\n<style>\r\n    .user {\r\n        padding: 5px;\r\n        border: 1px solid #ddd;\r\n        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);\r\n        border-radius: 5px;\r\n        text-align: center;\r\n    }\r\n\r\n    img {\r\n        border-radius: 5px;\r\n        max-width: 80px;\r\n    }\r\n\r\n    h3 {\r\n        font-size: 16px;\r\n        margin: 0;\r\n    }\r\n</style>\r\n\r\n<div class=\"user\">\r\n    <img src={avatar} alt=\"{username}'s Avatar'\">\r\n    <h3>{username}</h3>\r\n</div>"
+  ],
   "names": [],
-  "mappings": ""
+  "mappings": "AAmBI,UAAU,eAAC,CAAC,AACR,OAAO,CAAE,IAAI,CACb,SAAS,CAAE,IAAI,CACf,UAAU,CAAE,IAAI,CAChB,MAAM,CAAE,CAAC,CACT,OAAO,CAAE,CAAC,AACd,CAAC;ACnBD,KAAK,eAAC,CAAC,AACH,OAAO,CAAE,GAAG,CACZ,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,IAAI,CACtB,UAAU,CAAE,GAAG,CAAC,GAAG,CAAC,GAAG,CAAC,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,GAAG,CAAC,CAC1C,aAAa,CAAE,GAAG,CAClB,UAAU,CAAE,MAAM,AACtB,CAAC,AAED,GAAG,eAAC,CAAC,AACD,aAAa,CAAE,GAAG,CAClB,SAAS,CAAE,IAAI,AACnB,CAAC,AAED,EAAE,eAAC,CAAC,AACA,SAAS,CAAE,IAAI,CACf,MAAM,CAAE,CAAC,AACb,CAAC"
 }
